@@ -9,5 +9,23 @@
  * @author EBONY
  */
 public class CashAccount {
+     private String name;
+    protected int cashValue;
     
+    
+    public CashAccount(String name, int cashValue){
+        this.name = name;
+        this.cashValue = cashValue;  
+    }
+    
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public double getValue() {
+        return cashValue; //To change body of generated methods, choose Tools | Templates.
+    }
 }
