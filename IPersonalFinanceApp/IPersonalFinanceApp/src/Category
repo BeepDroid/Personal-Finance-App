@@ -4,14 +4,23 @@
  */
 public class Category implements ICategory {
 
+    String name;
+    TransactionType transaction;
+    
+    public Category(String name, TransactionType transaction){
+        this.name = name;
+        this.transaction = transaction;
+    }
+    
+    
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name; 
     }
 
     @Override
     public TransactionType getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return transaction; 
     }
     
     
