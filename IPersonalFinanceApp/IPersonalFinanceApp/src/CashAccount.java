@@ -8,7 +8,7 @@
  *
  * @author EBONY
  */
-public class CashAccount {
+public class CashAccount implements IAccount {
      private String name;
     protected int cashValue;
     
