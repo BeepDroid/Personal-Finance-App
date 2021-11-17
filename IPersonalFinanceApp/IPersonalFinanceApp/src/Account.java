@@ -10,6 +10,7 @@
 public class Account implements IAccount {
     protected String name;
     protected double value = 0;
+    protected String newName;
     
     public Account(String name, double value){
         this.name = name;
@@ -24,6 +25,11 @@ public class Account implements IAccount {
     @Override
     public double getValue() {
         return value; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public String updateName(String newName){
+        this.newName = name;
+        return name;    
     }
     
 }
