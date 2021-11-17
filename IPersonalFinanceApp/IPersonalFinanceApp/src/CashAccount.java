@@ -8,24 +8,49 @@
  *
  * @author EBONY
  */
-public class CashAccount implements IAccount {
-     private String name;
-    protected int cashValue;
+public class CashAccount implements ITransaction {
+    protected int ID;
+    protected Date date;
+    protected String description;
+    protected Double amount;
+    ICategory category;
+    IAccount account;
     
-    
-    public CashAccount(String name, int cashValue){
-        this.name = name;
-        this.cashValue = cashValue;  
+    public CashAccount(int ID, Date date, ICategory category, IAccount account, String description){
+        this.ID = ID;
+        this.date = date;
+        this.category = category;
+        this.account = account;
+        this.description = description;
     }
-    
 
     @Override
-    public String getName() {
-        return name;
+    public int getId() {
+        return ID; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public double getValue() {
-        return cashValue; //To change body of generated methods, choose Tools | Templates.
+    public Date getDate() {
+        return date; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getDescription() {
+        return description; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Double getAmount() {
+        return amount; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ICategory getCategory() {
+        return category; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IAccount getAccount() {
+        return account; //To change body of generated methods, choose Tools | Templates.
     }
 }
