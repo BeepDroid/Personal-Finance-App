@@ -9,7 +9,7 @@
  */
 public class Account implements IAccount {
     protected String name;
-    protected double value;
+    protected double value = 0;
     
     public Account(String name, double value){
         this.name = name;
