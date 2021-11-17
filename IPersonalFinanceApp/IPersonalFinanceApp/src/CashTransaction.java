@@ -8,7 +8,7 @@
  *
  * @author EBONY
  */
-public class CashAccount implements ITransaction {
+public class CashTransaction implements ITransaction {
     protected int ID;
     //I know the all caps ID is bad for a variable I promise to fix it when I get things working pls mercy
     protected Date date;
@@ -17,7 +17,7 @@ public class CashAccount implements ITransaction {
     ICategory category;
     IAccount account;
     
-    public CashAccount(int ID, Date date, ICategory category, IAccount account, String description){
+    public CashTransaction(int ID, Date date, ICategory category, IAccount account, String description){
         this.ID = ID;
         this.date = date;
         this.category = category;
