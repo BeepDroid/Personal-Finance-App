@@ -7,7 +7,7 @@
  *
  * @author kebey
  */
-public class DebitAccount implements ITransaction{
+public class DebitTransaction implements ITransaction{
     
     protected int ID;
     protected Date date;
@@ -16,7 +16,7 @@ public class DebitAccount implements ITransaction{
     ICategory category;
     IAccount account;
     
-    public DebitAccount(int ID, Date date, ICategory category, IAccount account, String description){
+    public DebitTransaction(int ID, Date date, ICategory category, IAccount account, String description){
         this.ID = ID;
         this.date = date;
         this.category = category;
