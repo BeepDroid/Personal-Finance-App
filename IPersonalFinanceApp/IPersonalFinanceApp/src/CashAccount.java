@@ -12,7 +12,7 @@ public class CashAccount implements ITransaction {
     protected int ID;
     protected Date date;
     protected String description;
-    protected Double amount;
+    protected Double amount = 0;
     ICategory category;
     IAccount account;
     
