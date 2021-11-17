@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author kebey
  */
-public class CreditCardAccount implements ITransaction{
+public class CreditCardTransaction implements ITransaction{
      protected int ID;
     protected Date date;
     protected String description;
@@ -18,7 +18,7 @@ public class CreditCardAccount implements ITransaction{
     ICategory category;
     IAccount account;
     
-    public CreditCardAccount(int ID, Date date, ICategory category, IAccount account, String description){
+    public CreditCardTransaction(int ID, Date date, ICategory category, IAccount account, String description){
         this.ID = ID;
         this.date = date;
         this.category = category;
