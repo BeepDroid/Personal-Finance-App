@@ -1,4 +1,4 @@
-
+import java.util.HashMap;
 import java.util.Date;
 import java.util.Map;
 
@@ -13,20 +13,18 @@ import java.util.Map;
  */
 public class Budget implements IBudget{
     
-    IAccount account;
-    DebitAccount debit;
-    CashAccount cash;
     ICategory category;
     String name;
     Date startDate;
     Date endDate;
+    HashMap<ICategory, Double> budgetitems;
 
     
-    public Budget(ICategory category, String name, Date startDate, Date endDate){
-        this.category = category;
+    public Budget(String name, Date startDate, Date endDate, HashMap<ICategory, Double> budgetItems){
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.budgetItems = budgetItems;
     }
     
     
@@ -49,7 +47,7 @@ public class Budget implements IBudget{
 
     @Override
     public Map<ICategory, Double> getItems() {
-        return (Map<ICategory, Double>) category; //To change body of generated methods, choose Tools | Templates.
+        return budgetItems; //To change body of generated methods, choose Tools | Templates.
     }
 
 
