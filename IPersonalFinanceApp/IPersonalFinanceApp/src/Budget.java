@@ -50,7 +50,8 @@ public class Budget implements IBudget{
         return budgetItems; //To change body of generated methods, choose Tools | Templates.
     }
     
-    //HashMap<ICategory, Double> firstBudget = new HashMap<ICategory, Double>(); -- hwo to make a HashMap in the main class.
+    //HashMap<ICategory, Double> firstBudget; 
+    //firstBudget = new HashMap<ICategory, Double>(); -- hwo to make a HashMap in the main class. Above is included.
     //firstBudget.put(new Category("Housing", Category.TransactionType.EXPENDITURE), 500.00); -- How to use this with the Category class.
 
 
