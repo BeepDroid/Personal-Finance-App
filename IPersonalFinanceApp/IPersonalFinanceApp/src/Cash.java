@@ -13,4 +13,8 @@ public class Cash extends Account {
         super(name, value);
     }
     
+    public int getValue(){
+        return value;
+    }
+    
 }
