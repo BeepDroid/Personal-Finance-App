@@ -8,7 +8,7 @@
  * @author kebey
  */
 public class Cash extends Account {
-    
+    protected double cashValue = 0;
     public Cash(String name, double value) {
         super(name, value);
     }
@@ -16,5 +16,10 @@ public class Cash extends Account {
     public int getValue(){
         return value;
     }
-    
+     public void increasecashValue( double cashDeposited){
+        cashValue += cashDeposited;
+    }
+    public void decreasedcashValue ( double cashWithdraw){
+       cashValue -= cashWithdraw; 
+    }
 }
