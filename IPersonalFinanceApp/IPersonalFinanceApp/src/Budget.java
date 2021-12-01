@@ -24,7 +24,7 @@ public class Budget implements IBudget{
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.budgetItems = budgetItems;
+        this.budgetitems = budgetItems;
     }
     
     
