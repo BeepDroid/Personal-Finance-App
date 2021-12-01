@@ -20,11 +20,11 @@ public class Budget implements IBudget{
     HashMap<ICategory, Double> budgetitems;
 
     
-    public Budget(String name, Date startDate, Date endDate, HashMap<ICategory, Double> budgetItems){
+    public Budget(String name, Date startDate, Date endDate, HashMap<ICategory, Double> budgetitems){
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.budgetitems = budgetItems;
+        this.budgetitems = budgetitems;
     }
     
     
@@ -47,7 +47,7 @@ public class Budget implements IBudget{
 
     @Override
     public Map<ICategory, Double> getItems() {
-        return budgetItems; //To change body of generated methods, choose Tools | Templates.
+        return budgetitems; //To change body of generated methods, choose Tools | Templates.
     }
     
     //HashMap<ICategory, Double> firstBudget; 
