@@ -13,7 +13,7 @@ public class Cash extends Account {
         super(name, value);
     }
     
-    public int getValue(){
+    public double getValue(){
         return value;
     }
      public void increasecashValue( double cashDeposited){
