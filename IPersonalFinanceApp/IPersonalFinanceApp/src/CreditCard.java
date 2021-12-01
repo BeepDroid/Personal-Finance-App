@@ -8,6 +8,7 @@
  * @author kebey
  */
 public class CreditCard extends Account {
+    String newName;
     
     public CreditCard(String name, double value) {
         super(name, value);
@@ -15,6 +16,11 @@ public class CreditCard extends Account {
     
     public double getDebt(){
         return value;
+    }
+
+    public String updateName(String newName){
+        name = newName;
+        return name;
     }
     
 }
