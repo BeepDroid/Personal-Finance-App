@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.util.Date;
 /**
  *
  * @author EBONY
@@ -13,7 +13,7 @@ public class CashTransaction implements ITransaction {
     //I know the all caps ID is bad for a variable I promise to fix it when I get things working pls mercy
     protected Date date;
     protected String description;
-    protected Double amount = 0;
+    protected Double amount = 0.00;
     ICategory category;
     IAccount account;
     
