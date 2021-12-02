@@ -143,7 +143,9 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean addCategory(String name, ICategory.TransactionType transactionType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      Category cat = new Category(name, transactionType);
+      categories.add(cat);
+      return true;
     }
 
     @Override
