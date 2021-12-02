@@ -161,12 +161,20 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean updateCategoryName(String name, String newName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+              if(category.name != name){
+           return false;
+       }
+       category.name = newName;
+       return true;
     }
 
     @Override
     public boolean updateCategoryType(String name, ICategory.TransactionType newType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(category.name != name){
+           return false;
+       }
+       category.transaction = newType;
+       return true;
     }
 
     @Override
