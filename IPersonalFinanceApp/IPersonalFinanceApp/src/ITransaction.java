@@ -36,4 +36,3 @@ public interface ITransaction {
    IAccount getAccount();
 }
    
-}
