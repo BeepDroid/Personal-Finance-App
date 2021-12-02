@@ -28,6 +28,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
     CashTransaction cashtransaction;
     CreditCard creditcard;
     Debit debitcard;
+   ArrayList <Budget> myBudget;
     
     private PersonalFinanceApp(){
         cash = new Cash("cash",0);
@@ -179,7 +180,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public Collection<IBudget> getBudgets() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          return Collections.unmodifiableCollection(myBudget);
     }
 
     @Override
