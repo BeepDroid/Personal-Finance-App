@@ -26,7 +26,8 @@ public class PersonalFinanceApp implements IPersonalFinance {
     Budget budget;
    ArrayList <CreditCard> credit;
     CashTransaction cashtransaction;
-    
+    CreditCard creditcard;
+    Debit debitcard;
     
     private PersonalFinanceApp(){
         cash = new Cash("cash",0);
@@ -62,52 +63,82 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public Collection<IAccount> getCreditCards() {
-        return Collections.unmodifiableCollection(credit); //To change body of generated methods, choose Tools | Templates.
+         return Collections.unmodifiableCollection(credit);
     }
 
     @Override
     public boolean addCreditCard(String name, double debt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CreditCard card = new CreditCard(name, debt);
+        credit.add(card);
+        return true;
     }
 
     @Override
     public boolean removeCreditCard(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         int index = credit.size();
+        if(index <= 0){
+            return false;
+        }
+        int lastElement = index - 1;
+        credit.remove(lastElement);
+        return true;
     }
 
     @Override
     public boolean updateCreditCardName(String name, String newName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         if(creditcard.name != name){
+            return false;}
+         creditcard.name = newName;
+        return true;
     }
 
     @Override
     public boolean updateCreditCardDebt(String name, double newDebt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(creditcard.name != name){
+        return false; }
+        creditcard.value = newDebt;
+        return true;
     }
 
     @Override
     public Collection<IAccount> getDebitAccounts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return Collections.unmodifiableCollection(debit);
     }
 
     @Override
     public boolean addDebitAccount(String name, double balance) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Debit debitcard = new Debit(name, balance);
+        debit.add(debitcard);
+        return true;
     }
 
     @Override
     public boolean removeDebitAccount(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          int indexD = debit.size();
+        if(indexD <= 0){
+            return false;
+        }
+        int lastElementD = indexD - 1;
+        debit.remove(lastElementD);
+        return true;
     }
 
     @Override
     public boolean updateDebitAccountName(String name, String newName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           if (debitcard.name != name){
+            return false;
+        } 
+        debitcard.name = newName;
+        return true;
     }
 
     @Override
     public boolean updateDebitAccountBalance(String name, double newBalance) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (debitcard.name != name){
+            return false;
+        }
+        debitcard.value = newBalance;
+        return true;
     }
 
     @Override
