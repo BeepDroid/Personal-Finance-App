@@ -150,7 +150,13 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean removeCategory(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int indexC = categories.size();
+        if (indexC <= 0){
+            return false;
+        }
+        int lastElementC = indexC - 1;
+        categories.remove(lastElementC);
+        return true;
     }
 
     @Override
