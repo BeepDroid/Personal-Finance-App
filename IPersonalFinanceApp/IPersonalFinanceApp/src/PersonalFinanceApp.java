@@ -24,14 +24,17 @@ public class PersonalFinanceApp implements IPersonalFinance {
     Cash cash;
    ArrayList <Debt> debt;
     Budget budget;
-   ArrayList <CreditCard> credit;
-    CashTransaction cashtransaction;
-    CreditCard creditcard;
-    Debit debitcard;
+   ArrayList <IAccount> credits;
+   ArrayList <ITransaction> transaction;
+   ArrayList <IAccount> debits
    ArrayList <Budget> myBudget;
     
     private PersonalFinanceApp(){
         cash = new Cash("cash",0);
+      ArrayList credits = new ArrayList<IAccount>();
+      ArrayList debits = new ArrayList<IAccount>();
+      ArrayList categories = new ArrayList<Category>();
+      ArrayList transaction = new ArrayList<ITransaction>();
     }
     
     public PersonalFinanceApp getInstance(){
