@@ -28,6 +28,13 @@ public class PersonalFinanceApp implements IPersonalFinance {
    ArrayList <ITransaction> transaction;
    ArrayList <IAccount> debits
    ArrayList <Budget> myBudget;
+   CreditCard creditcard;
+   Debit debit;
+   Category category;
+   ITransaction transaction;
+   CashTransaction cashTrans;
+   CreditCardTransaction cardTrans;
+   DebitTransaction debitTrans;
     
     private PersonalFinanceApp(){
         cash = new Cash("cash",0);
@@ -186,6 +193,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
           return Collections.unmodifiableCollection(myBudget);
     }
 
+    //Still figuring this one out, I'll have to ask her more about it.
     @Override
     public boolean addBudget(String name, Date startDate, Date endDate, Map<String, Double> items) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -193,39 +201,62 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean removeBudget(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         int indexB = myBudget.size();
+        if (indexB <= 0){
+            return false;
+        }
+        int lastElementB = indexB - 1;
+        myBudget.remove(lastElementB);
+        return true;
     }
 
     @Override
     public boolean updateBudgetName(String name, String newName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(budget.name != name){
+            return false;
+        }
+        budget.name = newName;
+        return true;
+    
     }
 
     @Override
     public boolean updateBudgetStartDate(String name, Date newStartDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               if(budget.name != name){
+            return false;
+        }
+        budget.startDate = newStartDate;
+        return true;
     }
 
     @Override
     public boolean updateBudgetEndDate(String name, Date newEndDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               if(budget.name != name){
+            return false;
+        }
+        budget.endDate = newEndDate;
+        return true;
     }
 
+   //This is one of the ones I need help with
     @Override
     public boolean addOrUpdateBudgetItem(String name, String categoryName, double value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    //This one toooooo
     @Override
     public boolean removeBudgetItem(String name, String categoryName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    //This one maybe works?? Need to check it
     @Override
     public Collection<Itransaction> getTransactions(Date startDate, Date endDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Collections.unmodifiableCollection(transactions);
     }
 
+    //Yeah, another one I'm not sure how to do.
     @Override
     public int addTransaction(Date date, String description, double amount, String categoryName, String accountName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -233,24 +264,60 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean removeTransaction(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               int indexT = transactions.size();
+        if (indexT <= 0 || id != transaction.getId()){
+            return false;
+        }
+        int lastElementT = indexT - 1;
+        transactions.remove(lastElementT);
+        return true;
     }
 
     @Override
     public boolean updateTransactionDate(int id, Date newDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               if(id != transaction.getId()) {
+            return false;
+        }
+        transaction.getDate();
+        newDate = transaction.getDate();
+        return true;
     }
 
     @Override
     public boolean updateTransactionDescription(int id, String newDescription) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                if(id != transaction.getId()){
+            return false;
+        }
+        if(transaction == cashTrans){
+            cashTrans.description = newDescription;
+            return true;
+        }
+        if(transaction == cardTrans){
+            cardTrans.description = newDescription;
+            return true;
+        }
+        debitTrans.description = newDescription;
+        return true;
     }
 
     @Override
     public boolean updateTransactionAmount(int id, double newAmount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                 if(id != transaction.getId()){
+            return false;
+        }
+        if(transaction == cashTrans){
+            cashTrans.amount = newAmount;
+            return true;
+        }
+        if(transaction == cardTrans){
+            cardTrans.amount = newAmount;
+            return true;
+        }
+        debitTrans.amount = newAmount;
+        return true;
     }
 
+    //And these last two I'll ask questions about!
     @Override
     public boolean updateTransactionCategory(int id, String newCategoryName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
