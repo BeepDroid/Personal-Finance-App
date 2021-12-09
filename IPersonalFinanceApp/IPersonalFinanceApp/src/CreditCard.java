@@ -23,4 +23,10 @@ public class CreditCard extends Account {
         return name;
     }
     
+        @Override
+    public boolean updateBalance(double transAmount) {
+         this.value += transAmount;
+         return true;
+    }
+    
 }
