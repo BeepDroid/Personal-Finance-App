@@ -10,4 +10,6 @@ public interface IAccount {
     * of debit, its the account balance
     */
    double getValue();
+   
+   public abstract boolean updateBalance(double transAmount);
 }
