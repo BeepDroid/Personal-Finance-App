@@ -104,13 +104,12 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean removeCreditCard(String name) {
-         int index = credits.size();
-        if(index <= 0){
-            return false;
-        }
-        int lastElement = index - 1;
-        credits.remove(lastElement);
-        return true;
+               IAccount account = findAccount(name);
+            if(account.getName() != name){
+                return false;
+            }       
+          credits.remove(name);
+          return true;
     }
 
     @Override
@@ -143,13 +142,12 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean removeDebitAccount(String name) {
-          int indexD = debits.size();
-        if(indexD <= 0){
-            return false;
-        }
-        int lastElementD = indexD - 1;
-        debits.remove(lastElementD);
-        return true;
+             IAccount account = findAccount(name);
+            if(account.getName() != name){
+                return false;
+            }       
+          debits.remove(name);
+          return true;
     }
 
     @Override
@@ -179,12 +177,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
 
     @Override
     public boolean removeCategory(String name) {
-        int indexC = categories.size();
-        if (indexC <= 0){
-            return false;
-        }
-        int lastElementC = indexC - 1;
-        categories.remove(lastElementC);
+         categories.remove(name);
         return true;
     }
 
