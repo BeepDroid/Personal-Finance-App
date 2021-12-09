@@ -32,4 +32,6 @@ public class Account implements IAccount {
         return name;    
     }
     
+    public abstract boolean updateBalance(double transAmount);
+    
 }
