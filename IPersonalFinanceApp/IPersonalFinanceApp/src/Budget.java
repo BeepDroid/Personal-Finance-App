@@ -66,6 +66,11 @@ public class Budget implements IBudget{
         return true;
     }
     
+     public boolean removeBudgetItem(String name, String categoryName){
+        budgetitems.remove(name, categoryName);
+        return true;
+    }
+    
     //HashMap<ICategory, Double> firstBudget; 
     //firstBudget = new HashMap<ICategory, Double>(); -- hwo to make a HashMap in the main class. Above is included.
     //firstBudget.put(new Category("Housing", Category.TransactionType.EXPENDITURE), 500.00); -- How to use this with the Category class.
