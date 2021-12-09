@@ -7,6 +7,7 @@
  *
  * @author kebey
  */
+ */
 public class Cash extends Account {
     protected double cashValue = 0;
     public Cash(String name, double value) {
@@ -21,5 +22,16 @@ public class Cash extends Account {
     }
     public void decreasedcashValue ( double cashWithdraw){
        cashValue -= cashWithdraw; 
+    }
+
+
+    @Override
+    public boolean updateBalance(double transAmount) {
+        if(transAmount > 0){
+            increasecashValue(transAmount);
+        }
+        else
+            decreasedcashValue(transAmount);
+        return true;
     }
 }
