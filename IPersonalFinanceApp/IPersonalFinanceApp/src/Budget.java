@@ -49,6 +49,22 @@ public class Budget implements IBudget{
     public Map<ICategory, Double> getItems() {
         return budgetitems; //To change body of generated methods, choose Tools | Templates.
     }
+
+  
+    public ICategory findCategory(String name) {
+        Iterable<ICategory> categories = null;
+        for (ICategory category : categories) {
+            if (category.getName().equals(name)) {
+                return category;
+            }
+        }
+        return null;
+    }
+    
+    public boolean addOrUpdateBudgetItem(String categoryName, double value){
+        budgetitems.put(findCategory(categoryName), value);
+        return true;
+    }
     
     //HashMap<ICategory, Double> firstBudget; 
     //firstBudget = new HashMap<ICategory, Double>(); -- hwo to make a HashMap in the main class. Above is included.
