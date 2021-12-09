@@ -303,7 +303,12 @@ public class PersonalFinanceApp implements IPersonalFinance {
     //This one too.
     @Override
     public boolean removeBudgetItem(String name, String categoryName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             IBudget budget = findBudget(name);
+        if(budget == null){
+            return false;
+        }
+        ((Budget)budget).removeBudgetItem(name, categoryName);
+        return true;
     }
 
     //This one probably works?
