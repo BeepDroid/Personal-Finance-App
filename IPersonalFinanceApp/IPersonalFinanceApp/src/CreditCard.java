@@ -9,6 +9,7 @@
  */
 public class CreditCard extends Account {
     String newName;
+     double creditLimit = 1000;
     
     public CreditCard(String name, double value) {
         super(name, value);
