@@ -12,22 +12,21 @@ import java.util.Map;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  
-
 /**
  *
  * @author EBONY
  */
 public class PersonalFinanceApp implements IPersonalFinance {
-    private PersonalFinanceApp finance;
+    private static PersonalFinanceApp finance;
     protected double cashValue;
     
-   ArrayList<Category> categories;
+   CategoryManager categories;
     Cash cash;
    ArrayList <Debit> debt;
     Budget budget;
-   ArrayList <IAccount> credits;
+   AccountManager  credits;
    TransactionManager transactionManager;
-   ArrayList <IAccount> debits;
+   AccountManager debits;
    ArrayList <Budget> myBudget;
    CreditCard creditcard;
    Debit debit;
@@ -38,25 +37,24 @@ public class PersonalFinanceApp implements IPersonalFinance {
    DebitTransaction debitTrans;
     
     private PersonalFinanceApp(){
-        cash = new Cash("cash",0);
-      ArrayList credits = new ArrayList<IAccount>();
-      ArrayList debits = new ArrayList<IAccount>();
-      ArrayList categories = new ArrayList<Category>();
-      ArrayList transaction = new ArrayList<ITransaction>();
-      transactionManager = TransactionManager.getInstance();
+       cash = new Cash("cash",0);
+       credits = new AccountManager();
+       debits = new AccountManager();
+       categories = new CategoryManager();
+       transactionManager =  TransactionManager.getInstance();
+       myBudget = new ArrayList<Budget>();
+      
     }
     
-    public PersonalFinanceApp getInstance(){
+    public static PersonalFinanceApp getInstance(){
        if (finance == null){
         finance = new PersonalFinanceApp();
        }
         return finance;
     }
     public Collection getCategories() {
-   return Collections.unmodifiableCollection(categories);
-   
-   
-}
+       return categories.getCategories();
+    }
 
     @Override
     public double getCash() {
@@ -65,154 +63,99 @@ public class PersonalFinanceApp implements IPersonalFinance {
     }
 
     @Override
-    public boolean updateCash(double newAmount) {
-     if (cash.value<0)
+    public boolean updateCash(double newAmount) {   
+     if (newAmount<0)     
        return false;
        
-     else if(cash.value > 0)
-         cash.increasecashValue(newAmount);
-        return true;
+        return cash.updateBalance(newAmount);
     }
     
     public IAccount findAccount(String name) {
-        Iterable<IAccount> debits = null;
-        Iterable<IAccount> credits = null;
-        for (IAccount debit : debits) {
-            if (debit.getName().equals(name)) {
-                return debit;
-            }
-        }
-        for(IAccount credit : credits){
-            if(credit.getName().equals(name)){
-                return credit;
-            }
-        }
-        return null;
+        IAccount account = credits.find(name);
+        if(account==null)
+        account = debits.find(name);
+         return account;
     }
 
     @Override
     public Collection<IAccount> getCreditCards() {
-         return Collections.unmodifiableCollection(credits);
+         return credits.getAccounts();
     }
 
     @Override
     public boolean addCreditCard(String name, double debt) {
-        CreditCard card = new CreditCard(name, debt);
-        credits.add(card);
-        return true;
+      return credits.addAccount(name, debt);
     }
 
     @Override
     public boolean removeCreditCard(String name) {
-               IAccount account = findAccount(name);
-            if(account.getName() != name){
-                return false;
-            }       
-          credits.remove(name);
-          return true;
+                     
+          return credits.removeAccount(name);
+          
     }
 
     @Override
     public boolean updateCreditCardName(String name, String newName) {
-         if(creditcard.name != name){
-            return false;}
-         creditcard.name = newName;
-        return true;
-    }
+         return credits.updateAccountName(name, newName);    }
 
     @Override
     public boolean updateCreditCardDebt(String name, double newDebt) {
-        if(creditcard.name != name){
-        return false; }
-        creditcard.value = newDebt;
-        return true;
+        return credits.updateAccountValue(name, newDebt);
     }
 
     @Override
     public Collection<IAccount> getDebitAccounts() {
-         return Collections.unmodifiableCollection(debits);
+         return debits.getAccounts();
     }
 
     @Override
     public boolean addDebitAccount(String name, double balance) {
-        Debit debitcard = new Debit(name, balance);
-        debits.add(debitcard);
-        return true;
+        return debits.addAccount(name, balance);
+        
     }
 
     @Override
     public boolean removeDebitAccount(String name) {
-             IAccount account = findAccount(name);
-            if(account.getName() != name){
-                return false;
-            }       
-          debits.remove(name);
-          return true;
+            return debits.removeAccount(name);
     }
 
     @Override
     public boolean updateDebitAccountName(String name, String newName) {
-           if (debit.name != name){
-            return false;
-        } 
-        debit.name = newName;
-        return true;
+        return debits.updateAccountName(name, newName);
+        
     }
 
     @Override
     public boolean updateDebitAccountBalance(String name, double newBalance) {
-        if (debit.name != name){
-            return false;
-        }
-        debit.value = newBalance;
-        return true;
+         return debits.updateAccountValue(name, newBalance);
     }
 
     @Override
     public boolean addCategory(String name, ICategory.TransactionType transactionType) {
-      Category cat = new Category(name, transactionType);
-      categories.add(cat);
-      return true;
+      return categories.addCategory(name, transactionType);
     }
 
     @Override
     public boolean removeCategory(String name) {
-         categories.remove(name);
-        return true;
+        return categories.removeCategory(name);
     }
 
     @Override
     public boolean updateCategoryName(String name, String newName) {
-              if(category.name != name){
-           return false;
-       }
-       category.name = newName;
-       return true;
+        return categories.updateCategoryName(name, newName);
+      
     }
 
     @Override
     public boolean updateCategoryType(String name, ICategory.TransactionType newType) {
-        if(category.name != name){
-           return false;
-       }
-       category.transaction = newType;
-       return true;
+        return categories.updateCategoryType(name, newType);
     }
 
     @Override
     public Collection<IBudget> getBudgets() {
           return Collections.unmodifiableCollection(myBudget);
     }
-    
-             public ICategory findCategory(String name) {
-        Iterable<ICategory> categories = null;
-        for (ICategory category : categories) {
-            if (category.getName().equals(name)) {
-                return category;
-            }
-        }
-        return null;
-    }
+   
              
     public IBudget findBudget(String name){
         Iterable<IBudget> myBudget = null;
@@ -229,7 +172,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
     public boolean addBudget(String name, Date startDate, Date endDate, Map<String, Double> items) {
         HashMap m = new HashMap<>();
             for (String categoryName : items.keySet()) {
-                ICategory category = findCategory(categoryName);
+                ICategory category = categories.find(categoryName);
             if (category == null) {
                 return false;
                         }
@@ -237,6 +180,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
                 m.put(category, items.get(categoryName));
             }
                     }
+            System.out.println(m);
             Budget thisBudget = new Budget(name, startDate, endDate, m);
             myBudget.add(thisBudget);
         return true;    
@@ -313,7 +257,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
     //This one I ALSO need help with
     @Override
     public int addTransaction(Date date, String description, double amount, String categoryName, String accountName) {
-        ICategory category = findCategory(categoryName);
+        ICategory category = categories.find(categoryName);
         IAccount account = findAccount(accountName);
         return transactionManager.addTransaction(date, description, amount, category, account);        
     }
@@ -359,7 +303,7 @@ public class PersonalFinanceApp implements IPersonalFinance {
         if(id != transaction.getId()){
             return false;
         }
-        ICategory category = findCategory(newCategoryName);
+        ICategory category = categories.find(newCategoryName);
         ITransaction transaction = transactionManager.findTransaction(id);
         transaction.updateCategory(category);
         return true;
@@ -379,3 +323,8 @@ public class PersonalFinanceApp implements IPersonalFinance {
     
     
 }
+   
+
+
+    
+            
