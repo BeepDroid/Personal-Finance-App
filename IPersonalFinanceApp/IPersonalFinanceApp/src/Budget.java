@@ -76,5 +76,4 @@ public class Budget implements IBudget{
     //firstBudget.put(new Category("Housing", Category.TransactionType.EXPENDITURE), 500.00); -- How to use this with the Category class.
 
 
-
 }
