@@ -17,5 +17,11 @@ public class Debit extends Account {
     public double getValue(){
         return value;  
     }
-    
+
+    @Override
+    public boolean updateBalance(double transAmount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+    
+
