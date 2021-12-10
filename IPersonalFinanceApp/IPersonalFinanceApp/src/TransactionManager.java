@@ -20,6 +20,7 @@ class TransactionManager {
     
     private TransactionManager(){
         transactions = new ArrayList<ITransaction>();
+        currentID = -1;
     }
     
     public static TransactionManager getInstance(){
@@ -30,7 +31,13 @@ class TransactionManager {
     }
     
     Collection<ITransaction> getTransactions(Date startDate, Date endDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     ArrayList<ITransaction> foundTransactions = new ArrayList<ITransaction>();
+     for (ITransaction transaction : transactions) {
+          if(transaction.getDate().compareTo(startDate)>= 0
+            || transaction.getDate().compareTo(endDate)<= 0)
+            foundTransactions.add(transaction);
+    }
+           return Collections.unmodifiableCollection(foundTransactions);
     }
     
     
@@ -83,6 +90,8 @@ class TransactionManager {
 
         int newId = getNextID();
             ITransaction transaction = new Transaction(newId, date, amount, category, account, description);
+            transactions.add(transaction);
+            System.out.println(newId);
             return newId;
     }
 
