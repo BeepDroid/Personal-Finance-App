@@ -5,11 +5,10 @@
 
 /**
  *
- * @author kebey
- */
+ * @author Javon LaCour
  */
 public class Cash extends Account {
-    protected double cashValue = 0;
+     
     public Cash(String name, double value) {
         super(name, value);
     }
@@ -18,20 +17,22 @@ public class Cash extends Account {
         return value;
     }
      public void increasecashValue( double cashDeposited){
-        cashValue += cashDeposited;
+         System.out.println(cashDeposited);
+         value += cashDeposited;
     }
     public void decreasedcashValue ( double cashWithdraw){
-       cashValue -= cashWithdraw; 
+       value -= cashWithdraw; 
     }
 
 
     @Override
     public boolean updateBalance(double transAmount) {
         if(transAmount > 0){
-            increasecashValue(transAmount);
-        }
-        else
-            decreasedcashValue(transAmount);
+        value = transAmount;
         return true;
+        }
+        else  
+        return false;
     }
 }
+
