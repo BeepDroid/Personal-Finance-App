@@ -5,10 +5,11 @@
 
 /**
  *
- * @author kebey
+ * @author Javon LaCour
  */
-public abstract class Account implements IAccount {
-    protected String name;
+public  class Account implements IAccount {
+
+   protected String name;
     protected double value = 0;
     protected String newName;
     
@@ -19,19 +20,23 @@ public abstract class Account implements IAccount {
 
     @Override
     public String getName() {
-        return name; //To change body of generated methods, choose Tools | Templates.
-    }
+     this.newName = name;
+        return name;      }
 
     @Override
     public double getValue() {
-        return value; //To change body of generated methods, choose Tools | Templates.
+       return value; 
     }
-    
-    public String updateName(String newName){
-        this.newName = name;
-        return name;    
-    }
-    
-    public abstract boolean updateBalance(double transAmount);
-    
+
+   public boolean updateBalance(double transAmount){
+       this.value = transAmount;
+       return true;
+   }
+   public void setName(String newName){
+       this.name = newName;
+   } 
+   public void setValue(double value){
+       this.value = value;
+   }
 }
+   
