@@ -7,7 +7,7 @@
  *
  * @author kebey
  */
-public class Account implements IAccount {
+public abstract class Account implements IAccount {
     protected String name;
     protected double value = 0;
     protected String newName;
