@@ -5,17 +5,15 @@
 
 /**
  *
- * @author kebey
+ * @author Javon LaCour
  */
 public class CreditCard extends Account {
-    String newName;
-     double creditLimit = 1000;
     
     public CreditCard(String name, double value) {
         super(name, value);
     }
     
-    public double getDebt(){
+     public double getDebt(){
         return value;
     }
 
@@ -31,3 +29,4 @@ public class CreditCard extends Account {
     }
     
 }
+    
